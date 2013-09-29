@@ -5,18 +5,19 @@
 package de.techlogic.BaSliGC.components;
 
 import de.techlogic.BaSliGC.util.CollisionChecker;
-import de.techlogic.BaSliGC.util.gamecomponent.Solid;
+import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import de.technologic.BaSliGC.decorated.Solid;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  *
  * @author Nils Heyer
  */
-public class SolidBlock extends AbstractGameComponent {
+public class SolidBlock extends Solid {
 
-    private Solid block;
-
-    public SolidBlock(String path, float width, float height, float x, float y, CollisionChecker cc) {
-        super(path, width, height, x, y);
-        component = new Solid(component, cc);
+    public SolidBlock(String path, float width, float height, float x, float y, CollisionChecker cc) throws SlickException {
+        super(new PlainImage(new Image(path), width, height, x, y), cc);
     }
 }

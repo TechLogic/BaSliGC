@@ -4,11 +4,8 @@
  */
 package de.techlogic.BaSliGC.components;
 
-import de.techlogic.BaSliGC.util.gamecomponent.Clickable;
-import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import de.technologic.BaSliGC.decorated.Clickable;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -17,22 +14,11 @@ import org.newdawn.slick.SlickException;
  *
  * @author Nils Heyer
  */
-public class Button extends AbstractGameComponent {
+public class Button extends Clickable {
 
-    public Button(String path, float width, float height, float x, float y, Input input) {
-        super(path, width, height, x, y);
-        component = new Clickable(component, input);
-    }
+   
 
-    public void addActionListener(ActionListener listener) {
-        Clickable c = (Clickable) component;
-        c.setOnClick(listener);
-
-    }
-    
-    public Clickable getClickable(){
-        Clickable c = (Clickable) component;
-        return c;
-        
+    public Button(String path, float width, float height, float x, float y) throws SlickException {
+        super(new PlainImage(new Image(path), width, height, x, y));
     }
 }

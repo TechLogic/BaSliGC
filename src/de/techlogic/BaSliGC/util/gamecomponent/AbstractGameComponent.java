@@ -4,7 +4,7 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
-import org.newdawn.slick.Image;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
  * Implementation of the GameComponent Interface.

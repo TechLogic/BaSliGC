@@ -2,30 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.techlogic.BaSliGC.components;
+package de.technologic.BaSliGC.decorated;
 
-import de.techlogic.BaSliGC.util.CollisionChecker;
+import de.technologic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import de.techlogic.BaSliGC.util.gamecomponent.Solid;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 /**
  *
- * @author Nils Heyer
+ * @author Nils
  */
-public class AbstractGameComponent implements GameComponent {
+public class AbstractDecoratedGameComponent implements GameComponent, DecoratedGameComponent {
 
     protected GameComponent component;
 
-    public AbstractGameComponent(String path, float width, float height, float x, float y) {
-        try {
-            component = new PlainImage(new Image(path), width, height, x, y);
-        } catch (SlickException ex) {
-            Logger.getLogger(AbstractGameComponent.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public AbstractDecoratedGameComponent(GameComponent component) {
+        this.component = component;
     }
 
     @Override
@@ -71,5 +62,10 @@ public class AbstractGameComponent implements GameComponent {
     @Override
     public void draw() {
         component.draw();
+    }
+
+    @Override
+    public GameComponent getComponent() {
+        return component;
     }
 }

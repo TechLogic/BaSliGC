@@ -6,13 +6,15 @@ package de.techlogic.BaSliGC;
 
 import de.techlogic.BaSliGC.components.Button;
 import de.techlogic.BaSliGC.components.MainCharacter;
-import de.techlogic.BaSliGC.util.gamecomponent.Dragable;
+import de.technologic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.components.SolidBlock;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
 import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.ComponentList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.opengl.Texture;
 
 /**
@@ -60,15 +62,19 @@ public class Test extends BasicGame {
         input.addMouseListener(componentList.getMouseListener());
         character = new MainCharacter(45f, 45f);
         componentList.addComponent(character);
-        drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker), input);
+        drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker));
         componentList.addDragable(drag);
 
-        button = new Button("res/brick.png", 30, 30, 100, 100, input);
-        componentList.addClickable(button.getClickable());
-        button.addActionListener(new ActionListener() {
+        button = new Button("res/brick.png", 30, 30, 100, 100);
+        componentList.addClickable(button);
+        button.setOnClick(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker), input);
+                try {
+                    drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker));
+                } catch (SlickException ex) {
+                    Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 componentList.addDragable(drag);
             }
@@ -108,7 +114,7 @@ public class Test extends BasicGame {
         g.setColor(Color.lightGray);
         g.fillRect(0, (float) (0.75 * gc.getHeight()), (gc.getWidth()), (float) (0.25 * gc.getHeight()));
         g.setColor(Color.black);
-      //  g.drawString("This should be an HUD", 300, (float) (0.85 * gc.getHeight()));
+        //  g.drawString("This should be an HUD", 300, (float) (0.85 * gc.getHeight()));
 
         componentList.draw();
 
