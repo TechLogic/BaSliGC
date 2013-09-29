@@ -5,7 +5,6 @@
 package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.components.MainCharacter;
-import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
@@ -13,9 +12,8 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  *
  * @author Nils Heyer
  */
-public class Solid extends AbstractDecoratedGameComponent{
+public class Solid extends AbstractDecoratedGameComponent {
 
-    
     /**
      * Decorated Constructor
      *
@@ -24,10 +22,8 @@ public class Solid extends AbstractDecoratedGameComponent{
      * @param cc The CollisionChecker to which the Solid object should be added
      * to check if someone is walking on it.
      */
-    public Solid(GameComponent component, CollisionChecker cc) {
+    public Solid(GameComponent component) {
         super(component);
-        cc.addSolid(this);
-
     }
 
     /**
