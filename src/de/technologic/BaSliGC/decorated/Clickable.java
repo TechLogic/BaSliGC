@@ -2,13 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.techlogic.BaSliGC.util.gamecomponent;
+package de.technologic.BaSliGC.decorated;
 
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.MouseListener;
 
 /**
  * Add the button function to an AbstractGameComponent. An ActionEvent is fired
@@ -18,61 +16,59 @@ import org.newdawn.slick.MouseListener;
  *
  * @author Nils Heyer
  */
-public class Clickable extends AbstractGameComponent {
+public class Clickable extends AbstractDecoratedGameComponent {
 
-    private GameComponent image;
     private String Text;
     private ActionListener onClick;
 
     @Override
     public float getWidth() {
-        return image.getWidth(); //To change body of generated methods, choose Tools | Templates.
+        return component.getWidth(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setWidth(float width) {
-        image.setWidth(width); //To change body of generated methods, choose Tools | Templates.
+        component.setWidth(width); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public float getHeight() {
-        return image.getHeight(); //To change body of generated methods, choose Tools | Templates.
+        return component.getHeight(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setHeight(float height) {
-        image.setHeight(height); //To change body of generated methods, choose Tools | Templates.
+        component.setHeight(height); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public float getX() {
-        return image.getX(); //To change body of generated methods, choose Tools | Templates.
+        return component.getX(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setX(float x) {
-        image.setX(x); //To change body of generated methods, choose Tools | Templates.
+        component.setX(x); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public float getY() {
-        return image.getY(); //To change body of generated methods, choose Tools | Templates.
+        return component.getY(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setY(float y) {
-        image.setY(y); //To change body of generated methods, choose Tools | Templates.
+        component.setY(y); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
      * Constructor of a Clickable Object.
      *
-     * @param image AbstracGameComponent that should be clickable
+     * @param component AbstracGameComponent that should be clickable
      * @param input The input class which invoke the mouseListener
      */
-    public Clickable(GameComponent image, Input input) {
-        super();
-        this.image = image;
+    public Clickable(GameComponent component) {
+        super(component);
 
     }
 
@@ -110,7 +106,7 @@ public class Clickable extends AbstractGameComponent {
 
     @Override
     public void draw() {
-        image.draw();
+        component.draw();
 
 
     }

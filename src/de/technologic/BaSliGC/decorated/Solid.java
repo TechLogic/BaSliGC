@@ -2,12 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.techlogic.BaSliGC.util.gamecomponent;
+package de.technologic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.components.MainCharacter;
 import de.techlogic.BaSliGC.util.CollisionChecker;
-import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
-import org.newdawn.slick.Image;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
@@ -15,10 +13,9 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  *
  * @author Nils Heyer
  */
-public class Solid implements GameComponent {
+public class Solid extends AbstractDecoratedGameComponent{
 
-    private GameComponent component;
-
+    
     /**
      * Decorated Constructor
      *
@@ -28,7 +25,7 @@ public class Solid implements GameComponent {
      * to check if someone is walking on it.
      */
     public Solid(GameComponent component, CollisionChecker cc) {
-        this.component = component;
+        super(component);
         cc.addSolid(this);
 
     }

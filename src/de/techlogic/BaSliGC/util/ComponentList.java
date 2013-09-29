@@ -4,9 +4,8 @@
  */
 package de.techlogic.BaSliGC.util;
 
-import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
-import de.techlogic.BaSliGC.util.gamecomponent.Clickable;
-import de.techlogic.BaSliGC.util.gamecomponent.Dragable;
+import de.technologic.BaSliGC.decorated.Clickable;
+import de.technologic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
@@ -19,7 +18,7 @@ public class ComponentList{
 
     ComponentLink<Dragable> dragableList;
     ComponentLink<Clickable> clickableList;
-    ComponentLink<AbstractGameComponent> componentList;
+    ComponentLink<GameComponent> componentList;
     int dragsize;
     int clicksize;
     Dragable active;
@@ -39,8 +38,8 @@ public class ComponentList{
         return mouseListener;
     }
 
-    public void addComponent(AbstractGameComponent component) {
-        ComponentLink<AbstractGameComponent> link = new ComponentLink(component);
+    public void addComponent(GameComponent component) {
+        ComponentLink<GameComponent> link = new ComponentLink(component);
         link.next = componentList.next;
         componentList.next = link;
     }
@@ -60,7 +59,7 @@ public class ComponentList{
     }
     
     public void draw(){
-        ComponentLink<AbstractGameComponent> activeLink = componentList;
+        ComponentLink<GameComponent> activeLink = componentList;
         while(activeLink.next!= null){
             activeLink = activeLink.next;
             activeLink.content.draw();
