@@ -7,7 +7,7 @@ package de.techlogic.BaSliGC.components;
 import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import de.technologic.BaSliGC.decorated.Solid;
+import de.techologic.BaSliGC.decorated.Solid;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
