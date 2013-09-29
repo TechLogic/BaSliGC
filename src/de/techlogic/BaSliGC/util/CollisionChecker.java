@@ -4,7 +4,7 @@
  */
 package de.techlogic.BaSliGC.util;
 
-import de.techologic.BaSliGC.decorated.Solid;
+import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.components.MainCharacter;
 import java.util.ArrayList;
 import java.util.List;

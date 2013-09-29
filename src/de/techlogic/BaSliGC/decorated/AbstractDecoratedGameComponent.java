@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.techologic.BaSliGC.decorated;
+package de.techlogic.BaSliGC.decorated;
 
-import de.techologic.BaSliGC.decorated.DecoratedGameComponent;
+import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**

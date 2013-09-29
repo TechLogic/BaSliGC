@@ -4,7 +4,7 @@
  */
 package de.techlogic.BaSliGC.components;
 
-import de.techologic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.decorated.Clickable;
 import java.awt.event.ActionListener;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;

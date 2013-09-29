@@ -4,8 +4,8 @@
  */
 package de.techlogic.BaSliGC.util;
 
-import de.techologic.BaSliGC.decorated.Clickable;
-import de.techologic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;

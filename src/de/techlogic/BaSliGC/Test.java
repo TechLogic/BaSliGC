@@ -6,7 +6,7 @@ package de.techlogic.BaSliGC;
 
 import de.techlogic.BaSliGC.components.Button;
 import de.techlogic.BaSliGC.components.MainCharacter;
-import de.techologic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.components.SolidBlock;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
