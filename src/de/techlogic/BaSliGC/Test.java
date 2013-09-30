@@ -6,8 +6,11 @@ package de.techlogic.BaSliGC;
 
 import de.techlogic.BaSliGC.components.Button;
 import de.techlogic.BaSliGC.components.MainCharacter;
+import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.components.SolidBlock;
+import de.techlogic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
@@ -29,7 +32,8 @@ public class Test extends BasicGame {
     private Music music;
     private Sound sound;
     private static AppGameContainer app;
-    private Button button;
+    private AbstractComponentFactory factory;
+    private Clickable button;
     private Dragable drag;
     private ComponentList componentList;
     private CollisionChecker collisionChecker;
@@ -46,6 +50,8 @@ public class Test extends BasicGame {
         super("");
         componentList = new ComponentList();
         collisionChecker = new CollisionChecker();
+        factory = new AbstractComponentFactory(componentList, collisionChecker) {
+        };
 
     }
 
@@ -62,16 +68,13 @@ public class Test extends BasicGame {
         input.addMouseListener(componentList.getMouseListener());
         character = new MainCharacter(45f, 45f);
         componentList.addComponent(character);
-        drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker));
-        componentList.addDragable(drag);
-
-        button = new Button("res/brick.png", 30, 30, 100, 100);
-        componentList.addClickable(button);
+        drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
+        button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
         button.setOnClick(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    drag = new Dragable(new SolidBlock("res/Sandstone.png", 100, 100, 300, 300, collisionChecker));
+                    drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
                 } catch (SlickException ex) {
                     Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
                 }
