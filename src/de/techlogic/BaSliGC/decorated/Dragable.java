@@ -20,7 +20,7 @@ public class Dragable extends AbstractDecoratedGameComponent {
      * and an input that indicates that something is draged.
      *
      * @param component AbstractGameComponent that should be dragable.
-     * @param input Input which is added a MouseListener.
+     *
      */
     public Dragable(GameComponent component) {
         super(component);

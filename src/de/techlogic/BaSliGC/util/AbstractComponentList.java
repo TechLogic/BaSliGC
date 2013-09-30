@@ -9,6 +9,7 @@ import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
+ * Abstact implementation of the ComponentList.
  *
  * @author Nils
  */
@@ -20,6 +21,10 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     private ComponentLink<Clickable> clickableList;
     private Dragable active;
 
+    /**
+     * Default constructor creates all internal LinkLists with a dummy head.
+     *
+     */
     public AbstractComponentList() {
         clickableList = new ComponentLink(null);
         dragableList = new ComponentLink(null);
@@ -27,6 +32,13 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         active = null;
     }
 
+    /**
+     * sets the internal mouseListener that is need to react to input made by
+     * the user. Needs to been callen in the constuctor of child classes
+     *
+     * @param mouseListener MouseListenerObject that should be attached to the
+     * ComponentList
+     */
     protected void setMouseListener(MouseListener mouseListener) {
         this.mouseListener = mouseListener;
     }
@@ -68,6 +80,14 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         return mouseListener;
     }
 
+    /**
+     * search in the internal list if a clickable object is clicked and fires
+     * the Click event of this Clickable. This method should be invoked when a
+     * mouse click event occure in the mouseListener.
+     *
+     * @param x X coordinate of the mousepointer
+     * @param y Y coordinate of the mousepointer
+     */
     protected void fireClicked(int x, int y) {
         ComponentLink<Clickable> activeLink = clickableList;
         while (activeLink.next != null) {
@@ -78,6 +98,15 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         }
     }
 
+    /**
+     * search in the internal list if a Dragable object is press and fires the
+     * pressed event of this Dragable. Sets the active object to the found one.
+     * This method should be invoked when a mouse click event occure in the
+     * mouseListener.
+     *
+     * @param x X coordinate of the mousepointer
+     * @param y Y coordinate of the mousepointer
+     */
     protected void firePressed(int x, int y) {
         ComponentLink<Dragable> activeLink = dragableList;
         while (activeLink.next != null) {
@@ -90,6 +119,12 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         }
     }
 
+    /**
+     * fires the realease event of the active object and set the element back to
+     * null. This method should be invoked when a mouse released event occure in
+     * the mouseListener.
+     *
+     */
     protected void fireRealesed() {
         if (active != null) {
             active.fireIsReleased();
@@ -97,6 +132,13 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         }
     }
 
+    /**
+     * fires the dragged event of the active object. This method should be
+     * invoked when a mouse dragged event occure in the mouseListener.
+     *
+     * @param newx new X Coordinate of the mousepointer
+     * @param newy new Y Coordinate of the mousepointer
+     */
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);

@@ -4,14 +4,13 @@
  */
 package de.techlogic.BaSliGC.decorated;
 
-import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
  *
  * @author Nils
  */
-public class AbstractDecoratedGameComponent implements GameComponent, DecoratedGameComponent {
+public class AbstractDecoratedGameComponent implements DecoratedGameComponent {
 
     protected GameComponent component;
 
