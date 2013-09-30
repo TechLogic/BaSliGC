@@ -8,7 +8,7 @@ import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.CollisionChecker;
-import de.techlogic.BaSliGC.util.ComponentList;
+import de.techlogic.BaSliGC.util.Slick2dComponentList;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
@@ -17,10 +17,10 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  */
 public abstract class AbstractComponentFactory {
     
-    private ComponentList list;
+    private Slick2dComponentList list;
     private CollisionChecker checker;
     
-    public AbstractComponentFactory(ComponentList list, CollisionChecker checker) {
+    public AbstractComponentFactory(Slick2dComponentList list, CollisionChecker checker) {
         this.list = list;
         this.checker = checker;
     }

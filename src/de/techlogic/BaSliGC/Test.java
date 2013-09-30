@@ -4,18 +4,16 @@
  */
 package de.techlogic.BaSliGC;
 
-import de.techlogic.BaSliGC.components.Button;
 import de.techlogic.BaSliGC.components.MainCharacter;
 import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Dragable;
-import de.techlogic.BaSliGC.components.SolidBlock;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
 import de.techlogic.BaSliGC.util.CollisionChecker;
-import de.techlogic.BaSliGC.util.ComponentList;
+import de.techlogic.BaSliGC.util.Slick2dComponentList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.opengl.Texture;
@@ -35,7 +33,7 @@ public class Test extends BasicGame {
     private AbstractComponentFactory factory;
     private Clickable button;
     private Dragable drag;
-    private ComponentList componentList;
+    private Slick2dComponentList componentList;
     private CollisionChecker collisionChecker;
     private Texture cloud;
 
@@ -48,7 +46,7 @@ public class Test extends BasicGame {
     public Test() {
 
         super("");
-        componentList = new ComponentList();
+        componentList = new Slick2dComponentList();
         collisionChecker = new CollisionChecker();
         factory = new AbstractComponentFactory(componentList, collisionChecker) {
         };
