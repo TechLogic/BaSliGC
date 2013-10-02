@@ -17,6 +17,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
 
     private MouseListener mouseListener;
     private ComponentLink<GameComponent> componentList;
+    private ComponentLink<GameComponent> lastComponent;
     private ComponentLink<Dragable> dragableList;
     private ComponentLink<Clickable> clickableList;
     private Dragable active;
@@ -55,11 +56,23 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         size++;
     }
 
+    private  void addAtLast(GameComponent component) {
+        ComponentLink<GameComponent> link = new ComponentLink(component);
+
+        lastComponent.next = link;
+        lastComponent = link;
+
+    }
+
     @Override
     public void addComponent(GameComponent component) {
         ComponentLink<GameComponent> link = new ComponentLink(component);
         link.next = componentList.next;
         componentList.next = link;
+        if (lastComponent == null) {
+            lastComponent = link;
+        }
+        System.out.println(lastComponent);
         size++;
     }
 
@@ -146,6 +159,8 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
             activeLink = activeLink.next;
             if (activeLink.content.fireIsPressed(x, y)) {
                 active = activeLink.content;
+                removesComponent(active);
+                addAtLast(active);
                 break;
             }
 
