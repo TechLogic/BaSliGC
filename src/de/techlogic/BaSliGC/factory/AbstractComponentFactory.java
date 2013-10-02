@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.factory;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
+import de.techlogic.BaSliGC.util.AbstractComponentList;
 import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.Slick2dComponentList;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
@@ -19,7 +20,7 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  */
 public abstract class AbstractComponentFactory {
 
-    private Slick2dComponentList list;
+    private AbstractComponentList list;
     private CollisionChecker checker;
 
     /**
@@ -29,7 +30,7 @@ public abstract class AbstractComponentFactory {
      * @param checker CollisionChecker tho that the created object should been
      * added
      */
-    public AbstractComponentFactory(Slick2dComponentList list, CollisionChecker checker) {
+    public AbstractComponentFactory(AbstractComponentList list, CollisionChecker checker) {
         this.list = list;
         this.checker = checker;
     }
@@ -43,8 +44,7 @@ public abstract class AbstractComponentFactory {
      */
     public Clickable createClickable(GameComponent component) {
         Clickable result = new Clickable(component);
-        // component needs to be removed from list before adding it new otherwise it would be rendered twice
-
+        list.removesComponent(component);
         list.addClickable(result);
         return result;
     }
@@ -60,7 +60,7 @@ public abstract class AbstractComponentFactory {
     public Solid createSolid(GameComponent component) {
         Solid result = new Solid(component);
         checker.addSolid(result);
-        // component needs to be removed from list before adding it new otherwise it would be rendered twice
+        list.removesComponent(component);
         list.addComponent(result);
         return result;
     }
@@ -74,8 +74,7 @@ public abstract class AbstractComponentFactory {
      */
     public Dragable createDragable(GameComponent component) {
         Dragable result = new Dragable(component);
-        // component needs to be removed from list before adding it new otherwise it would be rendered twice
-
+        list.removesComponent(component);
         list.addDragable(result);
         return result;
     }

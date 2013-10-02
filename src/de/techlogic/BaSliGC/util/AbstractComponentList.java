@@ -20,6 +20,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     private ComponentLink<Dragable> dragableList;
     private ComponentLink<Clickable> clickableList;
     private Dragable active;
+    public int size;
 
     /**
      * Default constructor creates all internal LinkLists with a dummy head.
@@ -30,6 +31,8 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         dragableList = new ComponentLink(null);
         componentList = new ComponentLink(null);
         active = null;
+        size = 0;
+
     }
 
     /**
@@ -49,6 +52,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         ComponentLink<Clickable> link = new ComponentLink(click);
         link.next = clickableList.next;
         clickableList.next = link;
+        size++;
     }
 
     @Override
@@ -56,6 +60,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         ComponentLink<GameComponent> link = new ComponentLink(component);
         link.next = componentList.next;
         componentList.next = link;
+        size++;
     }
 
     @Override
@@ -64,6 +69,34 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         ComponentLink<Dragable> link = new ComponentLink(drag);
         link.next = dragableList.next;
         dragableList.next = link;
+        size++;
+    }
+
+    private void removeObject(ComponentLink link, GameComponent component) {
+        ComponentLink<Clickable> activeLink = link;
+        while (activeLink.next != null) {
+            if (activeLink.next.content == component) {
+                activeLink.next = activeLink.next.next;
+                break;
+            }
+            activeLink = activeLink.next;
+        }
+
+    }
+
+    @Override
+    public void removesClickable(Clickable click) {
+        removeObject(clickableList, click);
+    }
+
+    @Override
+    public void removesComponent(GameComponent component) {
+        removeObject(componentList, component);
+    }
+
+    @Override
+    public void removesDragable(Dragable drag) {
+        removeObject(dragableList, drag);
     }
 
     @Override
@@ -142,6 +175,8 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);
+
+
         }
 
     }
