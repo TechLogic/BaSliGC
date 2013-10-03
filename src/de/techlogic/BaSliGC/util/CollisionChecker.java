@@ -6,7 +6,7 @@ package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.components.MainCharacter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class CollisionChecker {
      * Default Constructor inistalisation of list.
      */
     public CollisionChecker() {
-        this.solidList = new ArrayList<Solid>();
+        this.solidList = new LinkedList();
     }
 
     /**

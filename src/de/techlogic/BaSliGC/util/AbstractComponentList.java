@@ -5,7 +5,9 @@
 package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import java.util.LinkedList;
@@ -16,8 +18,9 @@ import java.util.LinkedList;
  * @author Nils
  */
 public abstract class AbstractComponentList<MouseListener> implements ComponentList {
-
+    
     private MouseListener mouseListener;
+    private CollisionChecker collisionChecker;
     private LinkedList<GameComponent> componentList;
     private LinkedList<GameComponent> lastComponent;
     private LinkedList<Dragable> dragableList;
@@ -30,14 +33,15 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
      * Default constructor creates all internal LinkLists with a dummy head.
      *
      */
-    public AbstractComponentList() {
+    public AbstractComponentList(CollisionChecker collisionChecker) {
+        this.collisionChecker = collisionChecker;
         clickableList = new LinkedList();
         dragableList = new LinkedList();
         componentList = new LinkedList();
         characterList = new LinkedList();
         active = null;
         size = 0;
-
+        
     }
 
     /**
@@ -50,52 +54,66 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void setMouseListener(MouseListener mouseListener) {
         this.mouseListener = mouseListener;
     }
-
+    
     @Override
     public void addClickable(Clickable click) {
         addComponent(click);
         clickableList.add(click);
     }
-
-   
+    
     @Override
     public void addCharacter(Character character) {
         characterList.add(character);
+        
     }
-
+    
     @Override
     public void addComponent(GameComponent component) {
+        if (component.getClass() == Solid.class) {
+            collisionChecker.addSolid((Solid) component);
+        }
         componentList.add(component);
     }
-
+    
     @Override
     public void addDragable(Dragable drag) {
         addComponent(drag);
         dragableList.add(drag);
     }
-
+    
     public void removeCharacter(Character character) {
-        clickableList.remove(character);
+        characterList.remove(character);
     }
-
+    
     @Override
     public void removesClickable(Clickable click) {
         clickableList.remove(click);
     }
-
+    
+    private void searchforSolid(GameComponent component) {
+        if (component.getClass() != DecoratedGameComponent.class) {
+        } else {
+            if (component.getClass() == Solid.class) {
+                collisionChecker.removeSolid((Solid) component);
+            } else {
+                searchforSolid(component.getComponent());
+            }
+        }
+    }
+    
     @Override
     public void removesComponent(GameComponent component) {
         componentList.remove(component);
     }
-
+    
     @Override
     public void removesDragable(Dragable drag) {
         dragableList.remove(drag);
     }
-
+    
     @Override
     public void draw() {
-
+        
         for (GameComponent component : componentList) {
             component.draw();
         }
@@ -103,7 +121,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
             c.draw();
         }
     }
-
+    
     @Override
     public MouseListener getMouseListener() {
         return mouseListener;
@@ -142,7 +160,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
                 addComponent(active);
                 break;
             }
-
+            
         }
     }
 
@@ -169,23 +187,23 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);
-
-
-
-
-
-
-
-
+            
+            
+            
+            
+            
+            
+            
+            
         }
-
+        
     }
-
+    
     private class ComponentLink<T> {
-
+        
         ComponentLink<T> next;
         T content;
-
+        
         public ComponentLink(T content) {
             this.content = content;
         }

@@ -5,6 +5,7 @@
 package de.techlogic.BaSliGC.components;
 
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import org.newdawn.slick.Image;
 
 /**
@@ -40,7 +41,6 @@ public class PlainImage extends AbstractGameComponent {
         image.draw(getX(), getY(), getWidth(), getHeight());
     }
 
-    
     @Override
     public float getWidth() {
         return super.getWidth(); //To change body of generated methods, choose Tools | Templates.
@@ -79,5 +79,10 @@ public class PlainImage extends AbstractGameComponent {
     @Override
     public void setY(float y) {
         super.setY(y); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public GameComponent getComponent() {
+        return this;
     }
 }

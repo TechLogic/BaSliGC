@@ -8,7 +8,6 @@ import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.AbstractComponentList;
-import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**
@@ -20,7 +19,6 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 public abstract class AbstractComponentFactory {
 
     private AbstractComponentList list;
-    private CollisionChecker checker;
 
     /**
      * creates an new instance of the the factory
@@ -29,9 +27,8 @@ public abstract class AbstractComponentFactory {
      * @param checker CollisionChecker tho that the created object should been
      * added
      */
-    public AbstractComponentFactory(AbstractComponentList list, CollisionChecker checker) {
+    public AbstractComponentFactory(AbstractComponentList list) {
         this.list = list;
-        this.checker = checker;
     }
 
     /**
@@ -58,7 +55,6 @@ public abstract class AbstractComponentFactory {
      */
     public Solid createSolid(GameComponent component) {
         Solid result = new Solid(component);
-        checker.addSolid(result);
         list.removesComponent(component);
         list.addComponent(result);
         return result;

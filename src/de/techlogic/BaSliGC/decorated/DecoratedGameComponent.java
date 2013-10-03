@@ -13,10 +13,5 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  */
 public interface DecoratedGameComponent extends GameComponent {
 
-    /**
-     * get the GameComponent which is decoreted with this class.
-     *
-     * @return GameComponent that is decorated with this class.
-     */
-    GameComponent getComponent();
+
 }

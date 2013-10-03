@@ -4,15 +4,13 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
-
-
 /**
  * Contains methods to get and set postion, width and height of the object, also
  * a draw method.
  *
  * @author Nils Heyer
  */
-public interface GameComponent{
+public interface GameComponent {
 
     /**
      * Return the X coordinate of the object
@@ -69,6 +67,13 @@ public interface GameComponent{
      * @return height of the object
      */
     float getHeight();
+
+    /**
+     * get the GameComponent which is decoreted with this class.
+     *
+     * @return GameComponent that is decorated with this class.
+     */
+    GameComponent getComponent();
 
     /**
      * Draw method of object.

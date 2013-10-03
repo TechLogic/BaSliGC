@@ -5,6 +5,7 @@
 package de.techlogic.BaSliGC.components;
 
 import de.techlogic.BaSliGC.util.AbstractCharacter;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -24,5 +25,10 @@ public class MainCharacter extends AbstractCharacter {
      */
     public MainCharacter(float x, float y) throws SlickException {
         super(x, y, new Image("res/Character.png"), new Image("res/Character_back.png"), new Image("res/Character_left.png"), new Image("res/Character_right.png"));
+    }
+
+    @Override
+    public GameComponent getComponent() {
+        return this;
     }
 }

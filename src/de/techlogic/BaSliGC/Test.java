@@ -46,9 +46,9 @@ public class Test extends BasicGame {
     public Test() {
 
         super("");
-        componentList = new Slick2dComponentList();
         collisionChecker = new CollisionChecker();
-        factory = new AbstractComponentFactory(componentList, collisionChecker) {
+        componentList = new Slick2dComponentList(collisionChecker);
+        factory = new AbstractComponentFactory(componentList) {
         };
 
     }
