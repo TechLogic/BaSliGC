@@ -8,6 +8,7 @@ import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import java.util.LinkedList;
 
 /**
  * Abstact implementation of the ComponentList.
@@ -17,11 +18,11 @@ import de.techlogic.BaSliGC.util.gamecomponent.Character;
 public abstract class AbstractComponentList<MouseListener> implements ComponentList {
 
     private MouseListener mouseListener;
-    private ComponentLink<GameComponent> componentList;
-    private ComponentLink<GameComponent> lastComponent;
-    private ComponentLink<Dragable> dragableList;
-    private ComponentLink<Clickable> clickableList;
-    private ComponentLink<Character> characterList;
+    private LinkedList<GameComponent> componentList;
+    private LinkedList<GameComponent> lastComponent;
+    private LinkedList<Dragable> dragableList;
+    private LinkedList<Clickable> clickableList;
+    private LinkedList<Character> characterList;
     private Dragable active;
     public int size;
 
@@ -30,10 +31,10 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
      *
      */
     public AbstractComponentList() {
-        clickableList = new ComponentLink(null);
-        dragableList = new ComponentLink(null);
-        componentList = new ComponentLink(null);
-        characterList = new ComponentLink(null);
+        clickableList = new LinkedList();
+        dragableList = new LinkedList();
+        componentList = new LinkedList();
+        characterList = new LinkedList();
         active = null;
         size = 0;
 
@@ -53,90 +54,53 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     @Override
     public void addClickable(Clickable click) {
         addComponent(click);
-        ComponentLink<Clickable> link = new ComponentLink(click);
-        link.next = clickableList.next;
-        clickableList.next = link;
-        size++;
+        clickableList.add(click);
     }
 
-    private void addAtLast(GameComponent component) {
-        ComponentLink<GameComponent> link = new ComponentLink(component);
-
-        lastComponent.next = link;
-        lastComponent = link;
-
-    }
-
+   
     @Override
     public void addCharacter(Character character) {
-        ComponentLink<Character> link = new ComponentLink(character);
-        link.next = characterList.next;
-        characterList.next = link;
-
+        characterList.add(character);
     }
 
     @Override
     public void addComponent(GameComponent component) {
-        ComponentLink<GameComponent> link = new ComponentLink(component);
-        link.next = componentList.next;
-        componentList.next = link;
-        if (lastComponent == null) {
-            lastComponent = link;
-        }
-        size++;
+        componentList.add(component);
     }
 
     @Override
     public void addDragable(Dragable drag) {
         addComponent(drag);
-        ComponentLink<Dragable> link = new ComponentLink(drag);
-        link.next = dragableList.next;
-        dragableList.next = link;
-        size++;
-    }
-
-    private void removeObject(ComponentLink link, GameComponent component) {
-        ComponentLink<Clickable> activeLink = link;
-        while (activeLink.next != null) {
-            if (activeLink.next.content == component) {
-                activeLink.next = activeLink.next.next;
-                break;
-            }
-            activeLink = activeLink.next;
-        }
-
+        dragableList.add(drag);
     }
 
     public void removeCharacter(Character character) {
-        removeObject(characterList, character);
+        clickableList.remove(character);
     }
 
     @Override
     public void removesClickable(Clickable click) {
-        removeObject(clickableList, click);
+        clickableList.remove(click);
     }
 
     @Override
     public void removesComponent(GameComponent component) {
-        removeObject(componentList, component);
+        componentList.remove(component);
     }
 
     @Override
     public void removesDragable(Dragable drag) {
-        removeObject(dragableList, drag);
+        dragableList.remove(drag);
     }
 
     @Override
     public void draw() {
-        ComponentLink<GameComponent> activeLink = componentList;
-        while (activeLink.next != null) {
-            activeLink = activeLink.next;
-            activeLink.content.draw();
+
+        for (GameComponent component : componentList) {
+            component.draw();
         }
-        ComponentLink<Character> activechar = characterList;
-        while (activechar.next != null) {
-            activechar = activechar.next;
-            activechar.content.draw();
+        for (Character c : characterList) {
+            c.draw();
         }
     }
 
@@ -154,10 +118,8 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
      * @param y Y coordinate of the mousepointer
      */
     protected void fireClicked(int x, int y) {
-        ComponentLink<Clickable> activeLink = clickableList;
-        while (activeLink.next != null) {
-            activeLink = activeLink.next;
-            if (activeLink.content.fireMouseClick(x, y)) {
+        for (Clickable c : clickableList) {
+            if (c.fireMouseClick(x, y)) {
                 break;
             }
         }
@@ -173,13 +135,11 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
      * @param y Y coordinate of the mousepointer
      */
     protected void firePressed(int x, int y) {
-        ComponentLink<Dragable> activeLink = dragableList;
-        while (activeLink.next != null) {
-            activeLink = activeLink.next;
-            if (activeLink.content.fireIsPressed(x, y)) {
-                active = activeLink.content;
+        for (Dragable d : dragableList) {
+            if (d.fireIsPressed(x, y)) {
+                active = d;
                 removesComponent(active);
-                addAtLast(active);
+                addComponent(active);
                 break;
             }
 
@@ -209,6 +169,8 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);
+
+
 
 
 
