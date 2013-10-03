@@ -7,18 +7,13 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
-import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.MouseListener;
-import org.newdawn.slick.SlickException;
 
 /**
  *
@@ -43,10 +38,10 @@ public class AbstractComponentListTest {
     @Before
     public void setUp() {
 
-        list = new AbstractComponentList<MouseListener>() {
+        list = new AbstractComponentList<MouseListener>(new CollisionChecker()) {
         };
 
-        factory = new AbstractComponentFactory(list, new CollisionChecker()) {
+        factory = new AbstractComponentFactory(list) {
         };
 
     }

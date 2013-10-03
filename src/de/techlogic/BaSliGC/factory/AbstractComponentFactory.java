@@ -55,7 +55,7 @@ public abstract class AbstractComponentFactory {
      */
     public Solid createSolid(GameComponent component) {
         Solid result = new Solid(component);
-        list.removesComponent(component);
+        list.removesForDecoration(component);
         list.addComponent(result);
         return result;
     }
@@ -69,7 +69,7 @@ public abstract class AbstractComponentFactory {
      */
     public Dragable createDragable(GameComponent component) {
         Dragable result = new Dragable(component);
-        list.removesComponent(component);
+        list.removesForDecoration(component);
         list.addDragable(result);
         return result;
     }

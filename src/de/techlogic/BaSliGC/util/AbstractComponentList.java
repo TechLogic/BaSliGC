@@ -18,7 +18,7 @@ import java.util.LinkedList;
  * @author Nils
  */
 public abstract class AbstractComponentList<MouseListener> implements ComponentList {
-    
+
     private MouseListener mouseListener;
     private CollisionChecker collisionChecker;
     private LinkedList<GameComponent> componentList;
@@ -41,7 +41,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         characterList = new LinkedList();
         active = null;
         size = 0;
-        
+
     }
 
     /**
@@ -54,19 +54,19 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void setMouseListener(MouseListener mouseListener) {
         this.mouseListener = mouseListener;
     }
-    
+
     @Override
     public void addClickable(Clickable click) {
         addComponent(click);
         clickableList.add(click);
     }
-    
+
     @Override
     public void addCharacter(Character character) {
         characterList.add(character);
-        
+
     }
-    
+
     @Override
     public void addComponent(GameComponent component) {
         if (component.getClass() == Solid.class) {
@@ -74,22 +74,27 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         }
         componentList.add(component);
     }
-    
+
     @Override
     public void addDragable(Dragable drag) {
         addComponent(drag);
         dragableList.add(drag);
     }
-    
-    public void removeCharacter(Character character) {
+
+    public void removesForDecoration(GameComponent component) {
+        componentList.remove(component);
+
+    }
+
+    public void removesCharacter(Character character) {
         characterList.remove(character);
     }
-    
+
     @Override
     public void removesClickable(Clickable click) {
         clickableList.remove(click);
     }
-    
+
     private void searchforSolid(GameComponent component) {
         if (component.getClass() != DecoratedGameComponent.class) {
         } else {
@@ -100,20 +105,21 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
             }
         }
     }
-    
+
     @Override
     public void removesComponent(GameComponent component) {
+        searchforSolid(component);
         componentList.remove(component);
     }
-    
+
     @Override
     public void removesDragable(Dragable drag) {
         dragableList.remove(drag);
     }
-    
+
     @Override
     public void draw() {
-        
+
         for (GameComponent component : componentList) {
             component.draw();
         }
@@ -121,7 +127,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
             c.draw();
         }
     }
-    
+
     @Override
     public MouseListener getMouseListener() {
         return mouseListener;
@@ -160,7 +166,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
                 addComponent(active);
                 break;
             }
-            
+
         }
     }
 
@@ -187,23 +193,23 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
         }
-        
+
     }
-    
+
     private class ComponentLink<T> {
-        
+
         ComponentLink<T> next;
         T content;
-        
+
         public ComponentLink(T content) {
             this.content = content;
         }
