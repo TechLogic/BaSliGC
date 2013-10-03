@@ -5,7 +5,7 @@
 package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Solid;
-import de.techlogic.BaSliGC.components.MainCharacter;
+import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class CollisionChecker {
      * @return false if the character dosen't hit anything otherwise it will
      * return true.
      */
-    public boolean checkCollision(MainCharacter character, float changeX, float changeY) {
+    public boolean checkCollision(Character character, float changeX, float changeY) {
         for (Solid solid : solidList) {
             if (solid.checkCollision(character, changeX, changeY)) {
                 return true;

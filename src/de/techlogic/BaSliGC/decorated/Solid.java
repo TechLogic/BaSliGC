@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.components.MainCharacter;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import de.techlogic.BaSliGC.util.gamecomponent.Character;
 
 /**
  * Make an Component unable to walk on.
@@ -34,7 +35,7 @@ public class Solid extends AbstractDecoratedGameComponent {
      * @param changeY The value the Y Coordinate changes.
      * @return
      */
-    public boolean checkCollision(MainCharacter c, float changeX, float changeY) {
+    public boolean checkCollision(Character c, float changeX, float changeY) {
         boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getImage().getWidth() >= getX()) && (c.getX() + changeX + c.getImage().getWidth() <= getX() + getWidth()));
         boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getImage().getHeight() >= getY()) && (c.getY() + changeY + c.getImage().getHeight() <= getY() + getHeight()));
         if (checkx == true && checky == true) {
