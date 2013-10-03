@@ -9,6 +9,7 @@ import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
+import de.techlogic.BaSliGC.util.CharacterController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
@@ -26,6 +27,7 @@ import org.newdawn.slick.opengl.Texture;
 public class Test extends BasicGame {
 
     private MainCharacter character;
+    private CharacterController chararcterController;
     private Input input;
     private Music music;
     private Sound sound;
@@ -65,6 +67,7 @@ public class Test extends BasicGame {
         input = gc.getInput();
         input.addMouseListener(componentList.getMouseListener());
         character = new MainCharacter(45f, 45f);
+        chararcterController = new CharacterController(character, collisionChecker, input);
         componentList.addCharacter(character);
         drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
         button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
@@ -98,7 +101,7 @@ public class Test extends BasicGame {
 
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
         }
-        CharacterControl(gc);
+        chararcterController.controlCharacter(gc.getWidth(),gc.getHeight());
     }
 
     /**
@@ -139,45 +142,9 @@ public class Test extends BasicGame {
 
 
     }
-
     /**
      * Moves the character if the right key is pressed
      *
      * @param gc
      */
-    private void CharacterControl(GameContainer gc) {
-        if (input.isKeyDown(Input.KEY_W)) {
-            character.setback();
-
-            if (character.getY() >= 40 && collisionChecker.checkCollision(character, 0, -1) == false) {
-
-                character.setY(character.getY() - 1);
-
-            }
-        } else {
-
-            if (input.isKeyDown(Input.KEY_S)) {
-                character.setfront();
-                if (character.getY() < gc.getHeight() - character.getImage().getHeight() - 0.25 * gc.getHeight() && collisionChecker.checkCollision(character, 0, 1) == false) {
-                    character.setY(character.getY() + 1);
-                }
-            } else {
-
-                if (input.isKeyDown(Input.KEY_A)) {
-                    character.setleft();
-                    if (character.getX() > 0 && collisionChecker.checkCollision(character, -1, 0) == false) {
-                        character.setX(character.getX() - 1);
-                    }
-                } else {
-
-                    if (input.isKeyDown(Input.KEY_D)) {
-                        character.setright();
-                        if (character.getX() < gc.getWidth() - character.getImage().getWidth() && collisionChecker.checkCollision(character, 1, 0) == false) {
-                            character.setX(character.getX() + 1);
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
