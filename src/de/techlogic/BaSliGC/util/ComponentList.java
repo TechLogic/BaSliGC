@@ -6,9 +6,8 @@ package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
-import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import org.newdawn.slick.MouseListener;
+import de.techlogic.BaSliGC.util.gamecomponent.Character;
 
 /**
  * ComponentList Interface is uses to managed all Game Components in a Game
@@ -37,6 +36,8 @@ public interface ComponentList<MouseListener> {
      * @param click Dragable object that should been addeds
      */
     void addDragable(Dragable drag);
+
+    void addCharacter(Character character);
 
     /**
      * Draws all GameComponents that are managed by the list

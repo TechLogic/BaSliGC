@@ -65,7 +65,7 @@ public class Test extends BasicGame {
         input = gc.getInput();
         input.addMouseListener(componentList.getMouseListener());
         character = new MainCharacter(45f, 45f);
-        componentList.addComponent(character);
+        componentList.addCharacter(character);
         drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
         button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
         button.setOnClick(new ActionListener() {

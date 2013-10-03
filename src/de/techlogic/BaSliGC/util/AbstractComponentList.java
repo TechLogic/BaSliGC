@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import de.techlogic.BaSliGC.util.gamecomponent.Character;
 
 /**
  * Abstact implementation of the ComponentList.
@@ -20,6 +21,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     private ComponentLink<GameComponent> lastComponent;
     private ComponentLink<Dragable> dragableList;
     private ComponentLink<Clickable> clickableList;
+    private ComponentLink<Character> characterList;
     private Dragable active;
     public int size;
 
@@ -31,6 +33,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         clickableList = new ComponentLink(null);
         dragableList = new ComponentLink(null);
         componentList = new ComponentLink(null);
+        characterList = new ComponentLink(null);
         active = null;
         size = 0;
 
@@ -56,11 +59,19 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         size++;
     }
 
-    private  void addAtLast(GameComponent component) {
+    private void addAtLast(GameComponent component) {
         ComponentLink<GameComponent> link = new ComponentLink(component);
 
         lastComponent.next = link;
         lastComponent = link;
+
+    }
+
+    @Override
+    public void addCharacter(Character character) {
+        ComponentLink<Character> link = new ComponentLink(character);
+        link.next = characterList.next;
+        characterList.next = link;
 
     }
 
@@ -72,7 +83,6 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         if (lastComponent == null) {
             lastComponent = link;
         }
-        System.out.println(lastComponent);
         size++;
     }
 
@@ -97,6 +107,10 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
 
     }
 
+    public void removeCharacter(Character character) {
+        removeObject(characterList, character);
+    }
+
     @Override
     public void removesClickable(Clickable click) {
         removeObject(clickableList, click);
@@ -118,6 +132,11 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         while (activeLink.next != null) {
             activeLink = activeLink.next;
             activeLink.content.draw();
+        }
+        ComponentLink<Character> activechar = characterList;
+        while (activechar.next != null) {
+            activechar = activechar.next;
+            activechar.content.draw();
         }
     }
 
@@ -190,6 +209,10 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     protected void fireDragged(int newx, int newy) {
         if (active != null) {
             active.fireIsDragged(newx, newy);
+
+
+
+
 
 
         }

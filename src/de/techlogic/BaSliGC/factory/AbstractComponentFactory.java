@@ -9,7 +9,6 @@ import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.AbstractComponentList;
 import de.techlogic.BaSliGC.util.CollisionChecker;
-import de.techlogic.BaSliGC.util.Slick2dComponentList;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 
 /**

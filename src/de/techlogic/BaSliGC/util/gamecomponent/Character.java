@@ -10,7 +10,7 @@ import org.newdawn.slick.Image;
  *
  * @author Nils Heyer
  */
-public interface Character {
+public interface Character extends GameComponent {
 
     /**
      * Draw the character at the position in the parameters.
