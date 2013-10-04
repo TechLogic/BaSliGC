@@ -17,8 +17,17 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  * @author Nils
  */
 public abstract class AbstractComponentFactory {
-
+    
     private AbstractComponentList list;
+    
+    private void checkForSameType(Class c, GameComponent g) throws DecoratedClassException {
+        if (c == g.getClass()) {
+            throw new DecoratedClassException("Component is already" + c);
+        } else {
+            checkForSameType(c, g.getComponent());
+        }
+        
+    }
 
     /**
      * creates an new instance of the the factory
@@ -38,7 +47,8 @@ public abstract class AbstractComponentFactory {
      * Clickable function.
      * @return the new Clickable object
      */
-    public Clickable createClickable(GameComponent component) {
+    public Clickable createClickable(GameComponent component) throws DecoratedClassException {
+        checkForSameType(Clickable.class, component);
         Clickable result = new Clickable(component);
         list.removesComponent(component);
         list.addClickable(result);
@@ -53,7 +63,8 @@ public abstract class AbstractComponentFactory {
      * Solid function.
      * @return the new Solid object
      */
-    public Solid createSolid(GameComponent component) {
+    public Solid createSolid(GameComponent component) throws DecoratedClassException {
+        checkForSameType(Solid.class, component);
         Solid result = new Solid(component);
         list.removesForDecoration(component);
         list.addComponent(result);
@@ -67,7 +78,8 @@ public abstract class AbstractComponentFactory {
      * Dragable function.
      * @return the new Dragable object
      */
-    public Dragable createDragable(GameComponent component) {
+    public Dragable createDragable(GameComponent component) throws DecoratedClassException {
+        checkForSameType(Dragable.class, component);
         Dragable result = new Dragable(component);
         list.removesForDecoration(component);
         list.addDragable(result);
