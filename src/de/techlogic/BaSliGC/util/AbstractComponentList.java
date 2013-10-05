@@ -29,7 +29,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     private Dragable active;
 
     public int getSize() {
-        return componentList.size();
+        return componentList.size() + characterList.size();
     }
 
     /**
@@ -56,6 +56,38 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
      */
     protected void setMouseListener(MouseListener mouseListener) {
         this.mouseListener = mouseListener;
+    }
+
+    boolean contains(GameComponent g) {
+        if (componentList.contains(g)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean containsClickable(Clickable g) {
+        if (clickableList.contains(g)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean containsDragable(Dragable g) {
+        if (dragableList.contains(g)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean containsCharacter(Character g) {
+        if (characterList.contains(g)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
