@@ -9,6 +9,7 @@ import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
+import de.techlogic.BaSliGC.factory.DecoratedClassException;
 import de.techlogic.BaSliGC.util.CharacterController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +26,7 @@ import org.newdawn.slick.opengl.Texture;
  * @author Nils Heyer
  */
 public class Test extends BasicGame {
-    
+
     private MainCharacter character;
     private CharacterController chararcterController;
     private Input input;
@@ -46,13 +47,13 @@ public class Test extends BasicGame {
      *
      */
     public Test() {
-        
+
         super("");
         collisionChecker = new CollisionChecker();
         componentList = new Slick2dComponentList(collisionChecker);
         factory = new AbstractComponentFactory(componentList) {
         };
-        
+
     }
 
     /**
@@ -64,30 +65,36 @@ public class Test extends BasicGame {
      */
     @Override
     public void init(GameContainer gc) throws SlickException {
-        input = gc.getInput();
-        input.addMouseListener(componentList.getMouseListener());
-        character = new MainCharacter(45f, 45f);
-        chararcterController = new CharacterController(character, collisionChecker, input);
-        chararcterController.setDownKey(input.KEY_S);
-        chararcterController.setUpKey(input.KEY_W);
-        chararcterController.setLeftKey(input.KEY_A);
-        chararcterController.setRightKey(input.KEY_D);
-        
-        componentList.addCharacter(character);
-        drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
-        button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
-        button.setOnClick(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
-                } catch (SlickException ex) {
-                    Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            input = gc.getInput();
+            input.addMouseListener(componentList.getMouseListener());
+            character = new MainCharacter(45f, 45f);
+            chararcterController = new CharacterController(character, collisionChecker, input);
+            chararcterController.setDownKey(input.KEY_S);
+            chararcterController.setUpKey(input.KEY_W);
+            chararcterController.setLeftKey(input.KEY_A);
+            chararcterController.setRightKey(input.KEY_D);
+
+            componentList.addCharacter(character);
+            drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
+            button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
+            button.setOnClick(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
+                    } catch (SlickException ex) {
+                        Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (DecoratedClassException ex) {
+                        Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    componentList.addDragable(drag);
                 }
-                
-                componentList.addDragable(drag);
-            }
-        });
+            });
+        } catch (DecoratedClassException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -103,7 +110,7 @@ public class Test extends BasicGame {
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             app.exit();
         }
-        
+
         if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
         }
         chararcterController.controlCharacter(gc.getWidth(), gc.getHeight());
@@ -118,7 +125,7 @@ public class Test extends BasicGame {
      */
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        
+
         g.setBackground(new Color(10, 45, 80));
         g.setColor(Color.lightGray);
         g.fillRect(0, (float) (0.75 * gc.getHeight()), (gc.getWidth()), (float) (0.25 * gc.getHeight()));
@@ -126,7 +133,7 @@ public class Test extends BasicGame {
         //  g.drawString("This should be an HUD", 300, (float) (0.85 * gc.getHeight()));
 
         componentList.draw();
-        
+
     }
 
     /**
@@ -142,10 +149,10 @@ public class Test extends BasicGame {
         // app.setFullscreen(true);
         //app.setVSync(true);
         app.start();
-        
-        
-        
-        
+
+
+
+
     }
     /**
      * Moves the character if the right key is pressed

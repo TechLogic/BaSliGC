@@ -4,7 +4,6 @@
  */
 package de.techlogic.BaSliGC.decorated;
 
-import de.techlogic.BaSliGC.components.MainCharacter;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 

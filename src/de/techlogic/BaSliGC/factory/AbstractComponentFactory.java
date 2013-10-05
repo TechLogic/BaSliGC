@@ -5,6 +5,7 @@
 package de.techlogic.BaSliGC.factory;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.AbstractComponentList;
@@ -17,16 +18,18 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  * @author Nils
  */
 public abstract class AbstractComponentFactory {
-    
+
     private AbstractComponentList list;
-    
+
     private void checkForSameType(Class c, GameComponent g) throws DecoratedClassException {
         if (c == g.getClass()) {
             throw new DecoratedClassException("Component is already" + c);
         } else {
-            checkForSameType(c, g.getComponent());
+            if (g.getClass() == Solid.class || g.getClass() == Clickable.class || g.getClass() == Dragable.class) {
+                checkForSameType(c, g.getComponent());
+            }
         }
-        
+
     }
 
     /**
@@ -50,7 +53,7 @@ public abstract class AbstractComponentFactory {
     public Clickable createClickable(GameComponent component) throws DecoratedClassException {
         checkForSameType(Clickable.class, component);
         Clickable result = new Clickable(component);
-        list.removesComponent(component);
+        list.removesForDecoration(component);
         list.addClickable(result);
         return result;
     }

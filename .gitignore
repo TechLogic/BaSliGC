@@ -2,6 +2,13 @@ ant specific
 dist/
 build/
  
+ 
+#coverage tool specific
+
+coverage
+.jacocoverage
+.exec-4946784342059
+ 
 #netbeans specific
 core
 nbproject/*

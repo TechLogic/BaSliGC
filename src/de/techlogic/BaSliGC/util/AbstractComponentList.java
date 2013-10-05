@@ -27,7 +27,10 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     private LinkedList<Clickable> clickableList;
     private LinkedList<Character> characterList;
     private Dragable active;
-    public int size;
+
+    public int getSize() {
+        return componentList.size();
+    }
 
     /**
      * Default constructor creates all internal LinkLists with a dummy head.
@@ -40,7 +43,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         componentList = new LinkedList();
         characterList = new LinkedList();
         active = null;
-        size = 0;
+
 
     }
 
@@ -73,6 +76,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
             collisionChecker.addSolid((Solid) component);
         }
         componentList.add(component);
+
     }
 
     @Override
@@ -194,24 +198,7 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         if (active != null) {
             active.fireIsDragged(newx, newy);
 
-
-
-
-
-
-
-
         }
 
-    }
-
-    private class ComponentLink<T> {
-
-        ComponentLink<T> next;
-        T content;
-
-        public ComponentLink(T content) {
-            this.content = content;
-        }
     }
 }
