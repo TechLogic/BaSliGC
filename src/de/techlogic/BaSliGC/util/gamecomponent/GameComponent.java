@@ -45,14 +45,14 @@ public interface GameComponent {
      *
      * @param width Width of the object as a float.
      */
-    void setWidth(float width);
+    void setWidth(float width)throws IllegalArgumentException;
 
     /**
      * Set height of the object.
      *
      * @param height Height of the object as a float.
      */
-    void setHeight(float height);
+    void setHeight(float height)throws IllegalArgumentException;
 
     /**
      * Return the width of the object.

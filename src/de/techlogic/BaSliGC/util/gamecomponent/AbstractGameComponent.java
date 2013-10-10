@@ -4,8 +4,6 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
-import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-
 /**
  * Implementation of the GameComponent Interface.
  *
@@ -43,7 +41,14 @@ public abstract class AbstractGameComponent implements GameComponent {
      * @param width width of the component.
      * @param height height of the component.
      */
-    public AbstractGameComponent(float x, float y, float width, float height) {
+    public AbstractGameComponent(float x, float y, float width, float height) throws IllegalArgumentException {
+        if (width <= 0) {
+            throw new IllegalArgumentException("Width should be bigger then 0");
+        }
+        if (height <= 0) {
+            throw new IllegalArgumentException("Height should be bigger then 0");
+
+        }
         this.x = x;
         this.y = y;
         this.width = width;
@@ -56,7 +61,10 @@ public abstract class AbstractGameComponent implements GameComponent {
     }
 
     @Override
-    public void setWidth(float width) {
+    public void setWidth(float width) throws IllegalArgumentException{
+        if (width <= 0) {
+            throw new IllegalArgumentException("Width should be bigger then 0");
+        }
         this.width = width;
     }
 
@@ -65,7 +73,12 @@ public abstract class AbstractGameComponent implements GameComponent {
         return height;
     }
 
-    public void setHeight(float height) {
+    @Override
+    public void setHeight(float height) throws IllegalArgumentException{
+        if (height <= 0) {
+            throw new IllegalArgumentException("Height should be bigger then 0");
+
+        }
         this.height = height;
     }
 
