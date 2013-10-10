@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
 import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.Slick2dComponentList;
-import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.opengl.Texture;

@@ -7,7 +7,6 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import org.newdawn.slick.Image;
 
 /**
  *

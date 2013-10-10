@@ -5,7 +5,6 @@
 package de.techlogic.BaSliGC.factory;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
-import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.AbstractComponentList;

@@ -4,8 +4,6 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
-import org.newdawn.slick.Image;
-
 /**
  *
  * @author Nils Heyer

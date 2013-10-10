@@ -4,7 +4,6 @@
  */
 package de.techlogic.BaSliGC.util;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 
