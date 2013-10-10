@@ -61,7 +61,7 @@ public class CharacterController {
 
             if (input.isKeyDown(downKey)) {
                 character.setfront();
-                if (character.getY() < height - character.getImage().getHeight() - 0.25 * height && collisionChecker.checkCollision(character, 0, 1) == false) {
+                if (character.getY() < height - character.getImage().getHeight()- 0.25 * height && collisionChecker.checkCollision(character, 0, 1) == false) {
                     character.setY(character.getY() + 1);
                 }
             } else {
