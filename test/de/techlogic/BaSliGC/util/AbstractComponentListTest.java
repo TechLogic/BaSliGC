@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -87,16 +88,14 @@ public class AbstractComponentListTest {
 
     @Test
     public void testAddCharacter() {
-
-        Character character = new AbstractCharacter(10f, 10f, null, null, null, null) {
-            @Override
-            public GameComponent getComponent() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        list.addCharacter(character);
-        assertTrue("List size is smaller then 1", list.getSize() == 1);
-        assertTrue("Image isn't contain in Clickable List", list.containsCharacter(character));
+        try {
+            Character character = new MainCharacter(10f, 10f, new Image("res/Character.png"), new Image("res/Character.png"), new Image("res/Character.png"), new Image("res/Character.png"));
+            list.addCharacter(character);
+            assertTrue("List size is smaller then 1", list.getSize() == 1);
+            assertTrue("Image isn't contain in Clickable List", list.containsCharacter(character));
+        } catch (SlickException ex) {
+            Logger.getLogger(AbstractComponentListTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }
