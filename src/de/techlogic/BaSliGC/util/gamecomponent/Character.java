@@ -18,8 +18,6 @@ public interface Character extends GameComponent {
      * @param x X coordinate of the character
      * @param y Y coordinate of the character
      */
-    void draw(float x, float y);
-
     /**
      * Default draw method.
      */
@@ -30,7 +28,7 @@ public interface Character extends GameComponent {
      *
      * @return Image that is active .
      */
-    Image getImage();
+    GameComponent getImage();
 
     /**
      * Setting back as active postion. Character is looking up and the his back

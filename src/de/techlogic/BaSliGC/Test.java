@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import org.newdawn.slick.*;
 import de.techlogic.BaSliGC.util.CollisionChecker;
 import de.techlogic.BaSliGC.util.Slick2dComponentList;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.opengl.Texture;
@@ -68,7 +69,7 @@ public class Test extends BasicGame {
         try {
             input = gc.getInput();
             input.addMouseListener(componentList.getMouseListener());
-            character = new MainCharacter(45f, 45f);
+            character = new MainCharacter(45f, 45f, new Image("res/Character.png"), new Image("res/Character_back.png"), new Image("res/Character_left.png"), new Image("res/Character_right.png"));
             chararcterController = new CharacterController(character, collisionChecker, input);
             chararcterController.setDownKey(input.KEY_S);
             chararcterController.setUpKey(input.KEY_W);

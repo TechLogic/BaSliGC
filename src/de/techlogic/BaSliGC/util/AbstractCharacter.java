@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import org.newdawn.slick.Image;
 
 /**
@@ -17,23 +18,23 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
     /**
      * The image that is drawn at the moment.
      */
-    protected Image akt;
+    protected GameComponent akt;
     /**
      * Back image of the character.
      */
-    protected Image back;
+    protected GameComponent back;
     /**
      * Fronts image of the character.
      */
-    protected Image front;
+    protected GameComponent front;
     /**
      * Left image of the character.
      */
-    protected Image left;
+    protected GameComponent left;
     /**
      * Right image of the character.
      */
-    protected Image right;
+    protected GameComponent right;
 
     /**
      * Posistion and Images are set in the constructor.
@@ -45,30 +46,33 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
      * @param left Left image of the charater.
      * @param right Right image of the charater.s
      */
-    public AbstractCharacter(float x, float y, Image front, Image back, Image left, Image right) {
+    public AbstractCharacter(float x, float y, GameComponent front, GameComponent back, GameComponent left, GameComponent right) {
         super(x, y);
         this.front = front;
+        front.setX(x);
+        front.setY(y);
         this.back = back;
+        back.setX(x);
+        back.setY(y);
         this.left = left;
+        left.setX(x);
+        left.setY(y);
         this.right = right;
+        right.setX(x);
+        right.setY(y);
         akt = this.front;
     }
 
     @Override
-    public void draw(float x, float y) {
-        setX(x);
-        setY(y);
-        akt.draw(x, y);
-    }
-
-    @Override
     public void draw() {
-        akt.draw(getX(), getY());
+        akt.setX(getX());
+        akt.setY(getY());
+        akt.draw();
     }
 
     @Override
-    public Image getImage() {
-        return front;
+    public GameComponent getImage() {
+        return akt;
     }
 
     @Override

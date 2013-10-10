@@ -23,8 +23,8 @@ public class MainCharacter extends AbstractCharacter {
      * @param y Y coordinate of the position of the character
      * @throws SlickException
      */
-    public MainCharacter(float x, float y) throws SlickException {
-        super(x, y, new Image("res/Character.png"), new Image("res/Character_back.png"), new Image("res/Character_left.png"), new Image("res/Character_right.png"));
+    public MainCharacter(float x, float y, Image front, Image back, Image left, Image right) throws SlickException {
+        super(x, y, new PlainImage(front, front.getWidth(),front.getHeight(), x, y),  new PlainImage(back, back.getWidth(),back.getHeight(), x, y),  new PlainImage(left, left.getWidth(),left.getHeight(), x, y),  new PlainImage(right, right.getWidth(),right.getHeight(), x, y));
     }
 
     @Override
