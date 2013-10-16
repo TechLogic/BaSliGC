@@ -8,6 +8,7 @@ import de.techlogic.BaSliGC.components.MainCharacter;
 import de.techlogic.BaSliGC.components.PlainImage;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.decorated.Clickable;
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.factory.AbstractComponentFactory;
 import de.techlogic.BaSliGC.factory.DecoratedClassException;
 import de.techlogic.BaSliGC.util.CharacterController;
@@ -39,6 +40,7 @@ public class Test extends BasicGame {
     private Slick2dComponentList componentList;
     private CollisionChecker collisionChecker;
     private Texture cloud;
+    private Pushable push;
 
     /**
      * Default constructor components List is created.
@@ -77,8 +79,10 @@ public class Test extends BasicGame {
 
             componentList.addCharacter(character);
             drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
+            push = factory.createPushable(drag);
             button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
             button.setOnClick(new ActionListener() {
+
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {

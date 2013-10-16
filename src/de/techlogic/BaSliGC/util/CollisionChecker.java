@@ -4,6 +4,7 @@
  */
 package de.techlogic.BaSliGC.util;
 
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import java.util.LinkedList;
@@ -17,12 +18,15 @@ import java.util.List;
 public class CollisionChecker {
 
     private List<Solid> solidList;
+    private List<Pushable> pushList;
 
     /**
      * Default Constructor inistalisation of list.
      */
     public CollisionChecker() {
         this.solidList = new LinkedList();
+        this.pushList = new LinkedList();
+
     }
 
     /**
@@ -34,6 +38,12 @@ public class CollisionChecker {
      * return true.
      */
     public boolean checkCollision(Character character, float changeX, float changeY) {
+        for (Pushable push : pushList) {
+            if (push.checkCollision(character, changeX, changeY)) {
+                push.setX(push.getX() + changeX);
+                push.setY(push.getY() + changeY);
+            }
+        }
         for (Solid solid : solidList) {
             if (solid.checkCollision(character, changeX, changeY)) {
                 return true;
@@ -58,5 +68,23 @@ public class CollisionChecker {
      */
     public void removeSolid(Solid solid) {
         solidList.remove(solid);
+    }
+
+    /**
+     * Add a new Pushable object to the list.
+     *
+     * @param pushable The oject that should be added.
+     */
+    public void addSolid(Pushable pushable) {
+        pushList.add(pushable);
+    }
+
+    /**
+     * Removes a Pushable oject from the list.
+     *
+     * @param pushable The object that should be removed.
+     */
+    public void removePushable(Pushable pushable) {
+        pushList.remove(pushable);
     }
 }

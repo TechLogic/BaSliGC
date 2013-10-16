@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.factory;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.AbstractComponentList;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
@@ -86,5 +87,14 @@ public abstract class AbstractComponentFactory {
         list.removesForDecoration(component);
         list.addDragable(result);
         return result;
+    }
+
+    public Pushable createPushable(GameComponent component) throws DecoratedClassException {
+        checkForSameType(Pushable.class, component);
+        Pushable push = new Pushable(component);
+        list.removesComponent(component);
+        list.addComponent(push);
+        list.addPushable(push);
+        return push;
     }
 }

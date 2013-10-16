@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import org.newdawn.slick.Graphics;
@@ -39,6 +40,8 @@ public interface ComponentList<MouseListener> {
     void addDragable(Dragable drag);
 
     void addCharacter(Character character);
+
+    void addPushable(Pushable push);
 
     /**
      * Draws all GameComponents that are managed by the list

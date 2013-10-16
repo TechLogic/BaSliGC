@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
@@ -118,6 +119,12 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         dragableList.add(drag);
     }
 
+    @Override
+    public void addPushable(Pushable push) {
+        addComponent(push);
+        collisionChecker.addSolid(push);
+    }
+
     public void removesForDecoration(GameComponent component) {
         componentList.remove(component);
 
@@ -132,20 +139,24 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         clickableList.remove(click);
     }
 
-    private void searchforSolid(GameComponent component) {
+    private void searchforSolidAndPushable(GameComponent component) {
         if (component.getClass() != DecoratedGameComponent.class) {
         } else {
             if (component.getClass() == Solid.class) {
                 collisionChecker.removeSolid((Solid) component);
             } else {
-                searchforSolid(component.getComponent());
+                if (component.getClass() == Pushable.class) {
+                    collisionChecker.removePushable((Pushable) component);
+                } else {
+                    searchforSolidAndPushable(component.getComponent());
+                }
             }
         }
     }
 
     @Override
     public void removesComponent(GameComponent component) {
-        searchforSolid(component);
+        searchforSolidAndPushable(component);
         componentList.remove(component);
     }
 
