@@ -41,14 +41,18 @@ public class CollisionChecker {
     public boolean checkCollision(GameComponent component, float changeX, float changeY) {
         for (Pushable push : pushList) {
             if (push.checkCollision(component, changeX, changeY)) {
-//                if (checkCollision(component, changeX, changeY)) {
-//                    return false;
-//                } else {
-                push.setX(push.getX() + changeX);
-                push.setY(push.getY() + changeY);
-//                }
+                if (SolidCollision(push, changeX, changeY)) {
+                    return true;
+                } else {
+                    push.setX(push.getX() + changeX);
+                    push.setY(push.getY() + changeY);
+                }
             }
         }
+        return SolidCollision(component, changeX, changeY);
+    }
+
+    private boolean SolidCollision(GameComponent component, float changeX, float changeY) {
         for (Solid solid : solidList) {
             if (solid.checkCollision(component, changeX, changeY)) {
                 return true;
