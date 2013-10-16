@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.components;
 
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 /**
@@ -37,7 +38,7 @@ public class PlainImage extends AbstractGameComponent {
      * set before.
      */
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
         image.draw(getX(), getY(), getWidth(), getHeight());
     }
 

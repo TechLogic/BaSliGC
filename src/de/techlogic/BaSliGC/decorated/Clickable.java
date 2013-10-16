@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.decorated;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.newdawn.slick.Graphics;
 
 /**
  * Add the button function to an AbstractGameComponent. An ActionEvent is fired
@@ -105,8 +106,8 @@ public class Clickable extends AbstractDecoratedGameComponent {
     }
 
     @Override
-    public void draw() {
-        component.draw();
+    public void draw(Graphics g) {
+        component.draw(g);
 
 
     }

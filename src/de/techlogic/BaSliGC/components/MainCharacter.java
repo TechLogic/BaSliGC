@@ -31,4 +31,6 @@ public class MainCharacter extends AbstractCharacter {
     public GameComponent getComponent() {
         return this;
     }
+
+ 
 }

@@ -11,6 +11,7 @@ import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import java.util.LinkedList;
+import org.newdawn.slick.Graphics;
 
 /**
  * Abstact implementation of the ComponentList.
@@ -154,13 +155,13 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
 
         for (GameComponent component : componentList) {
-            component.draw();
+            component.draw(g);
         }
         for (Character c : characterList) {
-            c.draw();
+            c.draw(g);
         }
     }
 

@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import org.newdawn.slick.Graphics;
 
 /**
  * Make an Component unable to walk on.
@@ -85,7 +86,7 @@ public class Solid extends AbstractDecoratedGameComponent {
     }
 
     @Override
-    public void draw() {
-        component.draw();
+    public void draw(Graphics g) {
+        component.draw(g);
     }
 }

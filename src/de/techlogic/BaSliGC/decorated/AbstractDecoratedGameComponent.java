@@ -5,6 +5,7 @@
 package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import org.newdawn.slick.Graphics;
 
 /**
  *
@@ -59,8 +60,8 @@ public class AbstractDecoratedGameComponent implements DecoratedGameComponent {
     }
 
     @Override
-    public void draw() {
-        component.draw();
+    public void draw(Graphics g) {
+        component.draw(g);
     }
 
     @Override

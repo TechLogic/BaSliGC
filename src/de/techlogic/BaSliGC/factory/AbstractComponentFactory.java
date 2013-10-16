@@ -18,7 +18,7 @@ import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
  */
 public abstract class AbstractComponentFactory {
 
-    private AbstractComponentList list;
+    protected AbstractComponentList list;
 
     private void checkForSameType(Class c, GameComponent g) throws DecoratedClassException {
         if (c == g.getClass()) {

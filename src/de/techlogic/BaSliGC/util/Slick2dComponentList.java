@@ -17,7 +17,9 @@ public class Slick2dComponentList extends AbstractComponentList<MouseListener> {
         super(collisionChecker);
         setMouseListener(new MouseListenerImp());
     }
+
     
+     
     private class MouseListenerImp implements MouseListener {
         
         @Override

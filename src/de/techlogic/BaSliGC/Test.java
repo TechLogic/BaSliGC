@@ -132,7 +132,7 @@ public class Test extends BasicGame {
         g.setColor(Color.black);
         //  g.drawString("This should be an HUD", 300, (float) (0.85 * gc.getHeight()));
 
-        componentList.draw();
+        componentList.draw(g);
 
     }
 

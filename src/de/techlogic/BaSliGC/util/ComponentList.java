@@ -8,6 +8,7 @@ import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.Dragable;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import org.newdawn.slick.Graphics;
 
 /**
  * ComponentList Interface is uses to managed all Game Components in a Game
@@ -42,7 +43,7 @@ public interface ComponentList<MouseListener> {
     /**
      * Draws all GameComponents that are managed by the list
      */
-    void draw();
+    void draw(Graphics g);
 
     /**
      * get the MouseListerner that is asingnt to the list This method is needed

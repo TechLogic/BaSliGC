@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.util.gamecomponent.AbstractGameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import org.newdawn.slick.Graphics;
 
 /**
  *
@@ -63,11 +64,13 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
         akt.setX(getX());
         akt.setY(getY());
-        akt.draw();
+        akt.draw(g);
     }
+    
+    
 
     @Override
     public GameComponent getImage() {
