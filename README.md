@@ -1,9 +1,5 @@
-BaSliGC
-=======
-
-Basic Slick2d Game Components
------------------------------
-
+![BaSliGC Logo](Logo.jpg)
+----------------------------
 BaSliGC is library which provides game components for game programmed with Slick2D.
 
 
