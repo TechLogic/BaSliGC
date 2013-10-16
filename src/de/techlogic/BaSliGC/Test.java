@@ -41,6 +41,7 @@ public class Test extends BasicGame {
     private CollisionChecker collisionChecker;
     private Texture cloud;
     private Pushable push;
+    private Image image;
 
     /**
      * Default constructor components List is created.
@@ -71,6 +72,8 @@ public class Test extends BasicGame {
             input = gc.getInput();
             input.addMouseListener(componentList.getMouseListener());
             character = new MainCharacter(45f, 45f, new Image("res/Character.png"), new Image("res/Character_back.png"), new Image("res/Character_left.png"), new Image("res/Character_right.png"));
+            System.out.println("Width: "+character.getWidth());
+            System.out.println("Height: "+character.getHeight());
             chararcterController = new CharacterController(character, collisionChecker, input);
             chararcterController.setDownKey(input.KEY_S);
             chararcterController.setUpKey(input.KEY_W);
@@ -79,6 +82,7 @@ public class Test extends BasicGame {
 
             componentList.addCharacter(character);
             drag = factory.createDragable(factory.createSolid(new PlainImage(new Image("res/Sandstone.png"), 100, 100, 300, 300)));
+            image = new Image("res/Sandstone.png");
             push = factory.createPushable(drag);
             button = factory.createClickable(new PlainImage(new Image("res/brick.png"), 30, 30, 100, 100));
             button.setOnClick(new ActionListener() {
@@ -136,6 +140,7 @@ public class Test extends BasicGame {
         g.setColor(Color.black);
         //  g.drawString("This should be an HUD", 300, (float) (0.85 * gc.getHeight()));
 
+      
         componentList.draw(g);
 
     }

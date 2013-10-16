@@ -7,6 +7,7 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,21 +32,25 @@ public class CollisionChecker {
 
     /**
      *Checks if the character will collide with an object in the list.
-     * @param character The character which should has moved
+     * @param component The character which should has moved
      * @param changeX The value the X Coordinate changes.
      * @param changeY The value the Y Coordinate changes.
      * @return false if the character dosen't hit anything otherwise it will
      * return true.
      */
-    public boolean checkCollision(Character character, float changeX, float changeY) {
+    public boolean checkCollision(GameComponent component, float changeX, float changeY) {
         for (Pushable push : pushList) {
-            if (push.checkCollision(character, changeX, changeY)) {
+            if (push.checkCollision(component, changeX, changeY)) {
+//                if (checkCollision(component, changeX, changeY)) {
+//                    return false;
+//                } else {
                 push.setX(push.getX() + changeX);
                 push.setY(push.getY() + changeY);
+//                }
             }
         }
         for (Solid solid : solidList) {
-            if (solid.checkCollision(character, changeX, changeY)) {
+            if (solid.checkCollision(component, changeX, changeY)) {
                 return true;
             }
         }

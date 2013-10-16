@@ -71,9 +71,9 @@ public class Pushable implements DecoratedGameComponent {
         component.draw(g);
     }
 
-    public boolean checkCollision(Character c, float changeX, float changeY) {
-        boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getImage().getWidth() >= getX()) && (c.getX() + changeX + c.getImage().getWidth() <= getX() + getWidth()));
-        boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getImage().getHeight() >= getY()) && (c.getY() + changeY + c.getImage().getHeight() <= getY() + getHeight()));
+    public boolean checkCollision(GameComponent c, float changeX, float changeY) {
+        boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getWidth() >= getX()) && (c.getX() + changeX + c.getWidth() <= getX() + getWidth()));
+        boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getHeight() >= getY()) && (c.getY() + changeY + c.getHeight() <= getY() + getHeight()));
         if (checkx == true && checky == true) {
             return true;
         } else {

@@ -42,45 +42,7 @@ public class PlainImage extends AbstractGameComponent {
         image.draw(getX(), getY(), getWidth(), getHeight());
     }
 
-    @Override
-    public float getWidth() {
-        return super.getWidth(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setWidth(float width) {
-        super.setWidth(width); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float getHeight() {
-        return super.getHeight(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setHeight(float height) {
-        super.setHeight(height); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float getX() {
-        return super.getX(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setX(float x) {
-        super.setX(x); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float getY() {
-        return super.getY(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setY(float y) {
-        super.setY(y); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public GameComponent getComponent() {

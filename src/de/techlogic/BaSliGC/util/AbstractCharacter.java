@@ -46,7 +46,7 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
      * @param left Left image of the charater.
      * @param right Right image of the charater.s
      */
-    public AbstractCharacter(float x, float y, GameComponent front, GameComponent back, GameComponent left, GameComponent right) {
+    public AbstractCharacter(float x, float y, GameComponent front, GameComponent back, GameComponent left, GameComponent right){
         super(x, y);
         this.front = front;
         front.setX(x);
@@ -96,4 +96,36 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
     public void setright() {
         akt = right;
     }
+
+    @Override
+    public float getHeight() {
+       return akt.getHeight();
+    }
+
+    @Override
+    public float getWidth() {
+      return akt.getWidth();
+    }
+
+    @Override
+    public void setHeight(float height) throws IllegalArgumentException {
+        back.setHeight(height);
+        front.setHeight(height);
+        left.setHeight(height);
+        right.setHeight(height);
+    }
+
+    @Override
+    public void setWidth(float width) throws IllegalArgumentException {
+      back.setWidth(width);
+      front.setWidth(width);
+      left.setWidth(width);
+      right.setWidth(width);
+    }
+    
+    
+    
+    
+    
+    
 }
