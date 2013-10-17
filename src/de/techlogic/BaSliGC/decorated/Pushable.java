@@ -5,7 +5,6 @@
 package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import org.newdawn.slick.Graphics;
 
 /**
@@ -14,13 +13,13 @@ import org.newdawn.slick.Graphics;
  */
 public class Pushable implements DecoratedGameComponent {
 
-    GameComponent component;
+    private GameComponent component;
 
     public Pushable(GameComponent component) {
         this.component = component;
     }
-            
 
+    
     @Override
     public float getX() {
         return component.getX();
@@ -72,6 +71,7 @@ public class Pushable implements DecoratedGameComponent {
     }
 
     public boolean checkCollision(GameComponent c, float changeX, float changeY) {
+
         boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getWidth() >= getX()) && (c.getX() + changeX + c.getWidth() <= getX() + getWidth()));
         boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getHeight() >= getY()) && (c.getY() + changeY + c.getHeight() <= getY() + getHeight()));
         if (checkx == true && checky == true) {

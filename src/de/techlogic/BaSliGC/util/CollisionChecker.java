@@ -20,6 +20,8 @@ public class CollisionChecker {
 
     private List<Solid> solidList;
     private List<Pushable> pushList;
+    private float WindowWidth;
+    private float WindowHeight;
 
     /**
      * Default Constructor inistalisation of list.
@@ -28,6 +30,14 @@ public class CollisionChecker {
         this.solidList = new LinkedList();
         this.pushList = new LinkedList();
 
+    }
+
+    public void setWindowHeight(float WindowHeight) {
+        this.WindowHeight = WindowHeight;
+    }
+
+    public void setWindowWidth(float WindowWidth) {
+        this.WindowWidth = WindowWidth;
     }
 
     /**
@@ -44,8 +54,12 @@ public class CollisionChecker {
                 if (SolidCollision(push, changeX, changeY)) {
                     return true;
                 } else {
-                    push.setX(push.getX() + changeX);
-                    push.setY(push.getY() + changeY);
+                    if (push.getX() + changeX < 0 || push.getX() + push.getWidth() + changeX > WindowWidth || push.getY() + changeY < 0 || push.getY() + push.getHeight() + changeY > WindowHeight) {
+                    } else {
+                        push.setX(push.getX() + changeX);
+                        push.setY(push.getY() + changeY);
+
+                    }
                 }
             }
         }
