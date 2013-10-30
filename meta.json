@@ -1,0 +1,60 @@
+{
+        "name" : "BasliGC",
+        "author" : "techlogic",
+        "url" : "www.github.com/techlogic/BasliGC",
+        "version" : "0.8",
+        "phase" : "alpha",
+        "progress" : "0",
+        "phaselist" : [
+            "dev", "alpha", "beta", "release"
+        ],
+
+        "patchnotes" : [
+        {
+         "name" : "Basligc",
+         "version" : "0.1",
+         "description" : "Basic ",
+         "patch" : [
+            {
+            "caption" : "General",
+            "content" : [
+                  {
+                     "type" : "added",
+                     "description" : "New menu has been implemented"
+                  },
+                  {
+                     "type" : "removed",
+                     "description" : "Removed old buttons"
+                  }
+               ]
+            },
+            {
+            "caption" : "Features",
+            "content" : [
+                  {
+                     "type" : "modified",
+                     "description" : "Changed skin of 'Dark Thrull'"
+                  },
+                  {
+                     "type" : "removed",
+                     "description" : "Excluded player vs. player mode (PVP)"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+
+   "team" : [
+      {
+         "name" : "TechLogic",
+         "job": "Developer",
+         "email" : "",
+         "url" : "http://www.techlogic.github.io",
+         "facebook" : "",
+         "twitter" : "",
+         "googleplus" : ""
+      }
+   ]
+}
+

@@ -21,14 +21,14 @@ import org.newdawn.slick.Graphics;
  */
 public abstract class AbstractComponentList<MouseListener> implements ComponentList {
 
-    private MouseListener mouseListener;
-    private CollisionChecker collisionChecker;
-    private LinkedList<GameComponent> componentList;
-    private LinkedList<GameComponent> lastComponent;
-    private LinkedList<Dragable> dragableList;
-    private LinkedList<Clickable> clickableList;
-    private LinkedList<Character> characterList;
-    private Dragable active;
+    protected MouseListener mouseListener;
+    protected CollisionChecker collisionChecker;
+    protected LinkedList<GameComponent> componentList;
+    protected LinkedList<GameComponent> lastComponent;
+    protected LinkedList<Dragable> dragableList;
+    protected LinkedList<Clickable> clickableList;
+    protected LinkedList<Character> characterList;
+    protected Dragable active;
 
     public int getSize() {
         return componentList.size() + characterList.size();

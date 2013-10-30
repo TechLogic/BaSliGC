@@ -6,7 +6,6 @@ package de.techlogic.BaSliGC.util;
 
 import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
-import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +21,16 @@ public class CollisionChecker {
     private List<Pushable> pushList;
     private float WindowWidth;
     private float WindowHeight;
+
+    public float getWindowHeight() {
+        return WindowHeight;
+    }
+
+    public float getWindowWidth() {
+        return WindowWidth;
+    }
+    
+    
 
     /**
      * Default Constructor inistalisation of list.
