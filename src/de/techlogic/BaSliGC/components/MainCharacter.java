@@ -6,6 +6,7 @@ package de.techlogic.BaSliGC.components;
 
 import de.techlogic.BaSliGC.util.AbstractCharacter;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -24,7 +25,11 @@ public class MainCharacter extends AbstractCharacter {
      * @throws SlickException
      */
     public MainCharacter(float x, float y, Image front, Image back, Image left, Image right) throws SlickException {
-        super(x, y, new PlainImage(front, front.getWidth(),front.getHeight(), x, y),  new PlainImage(back, back.getWidth(),back.getHeight(), x, y),  new PlainImage(left, left.getWidth(),left.getHeight(), x, y),  new PlainImage(right, right.getWidth(),right.getHeight(), x, y));
+        super(x, y, new PlainImage(front, front.getWidth(), front.getHeight(), x, y), new PlainImage(back, back.getWidth(), back.getHeight(), x, y), new PlainImage(left, left.getWidth(), left.getHeight(), x, y), new PlainImage(right, right.getWidth(), right.getHeight(), x, y));
+    }
+
+    public MainCharacter(float x, float y, Animation front, Animation back, Animation left, Animation right) throws SlickException {
+        super(x, y, new PlainAnimation(front, x, y), new PlainAnimation(back, x, y), new PlainAnimation(left, x, y), new PlainAnimation(right, x, y));
     }
 
     @Override
@@ -32,5 +37,4 @@ public class MainCharacter extends AbstractCharacter {
         return this;
     }
 
- 
 }
