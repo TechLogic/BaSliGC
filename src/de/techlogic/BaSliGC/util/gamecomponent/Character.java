@@ -30,6 +30,10 @@ public interface Character extends GameComponent {
      */
     GameComponent getImage();
 
+    boolean isMoveing();
+
+    void setMoveing(boolean b);
+
     /**
      * Setting back as active postion. Character is looking up and the his back
      * side is shown.

@@ -18,7 +18,7 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
     /**
      * The image that is drawn at the moment.
      */
-    protected GameComponent akt;
+    private Direction direction;
     /**
      * Back image of the character.
      */
@@ -46,7 +46,7 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
      * @param left Left image of the charater.
      * @param right Right image of the charater.s
      */
-    public AbstractCharacter(float x, float y, GameComponent front, GameComponent back, GameComponent left, GameComponent right){
+    public AbstractCharacter(float x, float y, GameComponent front, GameComponent back, GameComponent left, GameComponent right) {
         super(x, y);
         this.front = front;
         front.setX(x);
@@ -60,51 +60,75 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
         this.right = right;
         right.setX(x);
         right.setY(y);
-        akt = this.front;
+        direction = Direction.FRONT;
+    }
+
+    public AbstractCharacter(float x, float y, float width, float height) throws IllegalArgumentException {
+        super(x, y, width, height);
+        direction = Direction.FRONT;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override
     public void draw(Graphics g) {
-        akt.setX(getX());
-        akt.setY(getY());
-        akt.draw(g);
+        getImage().setX(getX());
+        getImage().setY(getY());
+        getImage().draw(g);
     }
-    
-    
 
     @Override
     public GameComponent getImage() {
-        return akt;
+        switch (direction) {
+            case BACK: {
+                return back;
+            }
+
+            case FRONT: {
+                return front;
+            }
+
+            case LEFT: {
+                return left;
+            }
+            case RIGHT: {
+                return right;
+            }
+
+        }
+        throw new UnknownError("Direction isn't right");
     }
 
     @Override
     public void setback() {
-        akt = back;
+        direction = Direction.BACK;
     }
 
     @Override
     public void setfront() {
-        akt = front;
+        direction = Direction.FRONT;
     }
 
     @Override
     public void setleft() {
-        akt = left;
+        direction = Direction.LEFT;
     }
 
     @Override
     public void setright() {
-        akt = right;
+        direction = Direction.RIGHT;
     }
 
     @Override
     public float getHeight() {
-       return akt.getHeight();
+        return super.getHeight();
     }
 
     @Override
     public float getWidth() {
-      return akt.getWidth();
+        return   super.getWidth();
     }
 
     @Override
@@ -117,15 +141,10 @@ public abstract class AbstractCharacter extends AbstractGameComponent implements
 
     @Override
     public void setWidth(float width) throws IllegalArgumentException {
-      back.setWidth(width);
-      front.setWidth(width);
-      left.setWidth(width);
-      right.setWidth(width);
+        back.setWidth(width);
+        front.setWidth(width);
+        left.setWidth(width);
+        right.setWidth(width);
     }
-    
-    
-    
-    
-    
-    
+
 }

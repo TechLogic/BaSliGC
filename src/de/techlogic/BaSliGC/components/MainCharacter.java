@@ -17,6 +17,8 @@ import org.newdawn.slick.SlickException;
  */
 public class MainCharacter extends AbstractCharacter {
 
+    private boolean isMoveing;
+
     /**
      * Constructor of the Character that is controlled by the player.
      *
@@ -35,6 +37,14 @@ public class MainCharacter extends AbstractCharacter {
     @Override
     public GameComponent getComponent() {
         return this;
+    }
+
+    public void setMoveing(boolean b) {
+        isMoveing = b;
+    }
+
+    public boolean isMoveing() {
+        return isMoveing;
     }
 
 }

@@ -52,5 +52,11 @@ public class PlainAnimation extends AbstractGameComponent {
     public void draw(Graphics g) {
         ani.draw(getX(), getY());
     }
+    
+    
+    public void drawStop(){
+        ani.stop();
+        this.draw(null);
+    }
 
 }

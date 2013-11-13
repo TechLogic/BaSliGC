@@ -50,15 +50,16 @@ public class CharacterController {
             if (character.getY() >= 40 && collisionChecker.checkCollision(character, 0, -1) == false) {
 
                 character.setY(character.getY() - 1);
-
+                character.setMoveing(true);
             }
         }
 
-
         if (input.isKeyDown(downKey)) {
             character.setfront();
-            if (character.getY() < height - character.getImage().getHeight() - 0.25 * height && collisionChecker.checkCollision(character, 0, 1) == false) {
+
+            if (character.getY() < height - character.getHeight() - 0.25 * height && collisionChecker.checkCollision(character, 0, 1) == false) {
                 character.setY(character.getY() + 1);
+                character.setMoveing(true);
             }
         }
 
@@ -66,14 +67,21 @@ public class CharacterController {
             character.setleft();
             if (character.getX() > 0 && collisionChecker.checkCollision(character, -1, 0) == false) {
                 character.setX(character.getX() - 1);
+                character.setMoveing(true);
             }
         }
 
         if (input.isKeyDown(rightKey)) {
             character.setright();
-            if (character.getX() < width - character.getImage().getWidth() && collisionChecker.checkCollision(character, 1, 0) == false) {
+            if (character.getX() < width - character.getWidth() && collisionChecker.checkCollision(character, 1, 0) == false) {
                 character.setX(character.getX() + 1);
+                character.setMoveing(true);
             }
+
+            if (!input.isKeyDown(downKey) && !input.isKeyDown(rightKey) && !input.isKeyDown(leftKey) && !input.isButton1Pressed(upKey)) {
+                character.setMoveing(false);
+            }
+
         }
     }
 }
