@@ -5,7 +5,7 @@
 package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
-import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import org.newdawn.slick.Graphics;
 
 /**
  * Make an Component unable to walk on.
@@ -34,10 +34,10 @@ public class Solid extends AbstractDecoratedGameComponent {
      * @param changeY The value the Y Coordinate changes.
      * @return
      */
-    public boolean checkCollision(Character c, float changeX, float changeY) {
-        boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getImage().getWidth() >= getX()) && (c.getX() + changeX + c.getImage().getWidth() <= getX() + getWidth()));
-        boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getImage().getHeight() >= getY()) && (c.getY() + changeY + c.getImage().getHeight() <= getY() + getHeight()));
-        if (checkx == true && checky == true) {
+    public boolean checkCollision(GameComponent c, float changeX, float changeY) {
+        boolean checkx = ((c.getX() + changeX >= getX()) && (c.getX() + changeX <= getX() + getWidth())) || ((c.getX() + changeX + c.getWidth() >= getX()) && (c.getX() + changeX + c.getWidth() <= getX() + getWidth()));
+        boolean checky = ((c.getY() + changeY >= getY()) && (c.getY() + changeY <= getY() + getHeight())) || ((c.getY() + changeY + c.getHeight() >= getY()) && (c.getY() + changeY + c.getHeight() <= getY() + getHeight()));
+        if (checkx == true && checky == true && c.getX()!= getX() && c.getY()!= getY()) {
             return true;
         } else {
             return false;
@@ -85,7 +85,7 @@ public class Solid extends AbstractDecoratedGameComponent {
     }
 
     @Override
-    public void draw() {
-        component.draw();
+    public void draw(Graphics g) {
+        component.draw(g);
     }
 }

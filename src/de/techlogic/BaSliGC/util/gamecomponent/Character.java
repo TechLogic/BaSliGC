@@ -4,7 +4,7 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
-import org.newdawn.slick.Image;
+import org.newdawn.slick.Graphics;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface Character extends GameComponent {
     /**
      * Default draw method.
      */
-    void draw();
+    void draw(Graphics g);
 
     /**
      * Get Image that is activ at the moment.

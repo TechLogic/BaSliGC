@@ -4,6 +4,7 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
+import org.newdawn.slick.Graphics;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class GameComponentTest {
             }
 
             @Override
-            public void draw() {
+            public void draw(Graphics g) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
@@ -112,7 +113,7 @@ public class GameComponentTest {
                 }
 
                 @Override
-                public void draw() {
+                public void draw(Graphics g) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
             };
@@ -134,7 +135,7 @@ public class GameComponentTest {
                 }
 
                 @Override
-                public void draw() {
+                public void draw(Graphics g) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
             };
@@ -156,7 +157,7 @@ public class GameComponentTest {
                 }
 
                 @Override
-                public void draw() {
+                public void draw(Graphics g) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
             };
@@ -178,7 +179,7 @@ public class GameComponentTest {
                 }
 
                 @Override
-                public void draw() {
+                public void draw(Graphics g) {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
             };

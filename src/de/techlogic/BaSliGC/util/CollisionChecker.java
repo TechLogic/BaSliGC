@@ -4,8 +4,9 @@
  */
 package de.techlogic.BaSliGC.util;
 
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
-import de.techlogic.BaSliGC.util.gamecomponent.Character;
+import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,25 +18,66 @@ import java.util.List;
 public class CollisionChecker {
 
     private List<Solid> solidList;
+    private List<Pushable> pushList;
+    private float WindowWidth;
+    private float WindowHeight;
+
+    public float getWindowHeight() {
+        return WindowHeight;
+    }
+
+    public float getWindowWidth() {
+        return WindowWidth;
+    }
+    
+    
 
     /**
      * Default Constructor inistalisation of list.
      */
     public CollisionChecker() {
         this.solidList = new LinkedList();
+        this.pushList = new LinkedList();
+
+    }
+
+    public void setWindowHeight(float WindowHeight) {
+        this.WindowHeight = WindowHeight;
+    }
+
+    public void setWindowWidth(float WindowWidth) {
+        this.WindowWidth = WindowWidth;
     }
 
     /**
      *Checks if the character will collide with an object in the list.
-     * @param character The character which should has moved
+     * @param component The character which should has moved
      * @param changeX The value the X Coordinate changes.
      * @param changeY The value the Y Coordinate changes.
      * @return false if the character dosen't hit anything otherwise it will
      * return true.
      */
-    public boolean checkCollision(Character character, float changeX, float changeY) {
+    public boolean checkCollision(GameComponent component, float changeX, float changeY) {
+        for (Pushable push : pushList) {
+            if (push.checkCollision(component, changeX, changeY)) {
+                if (SolidCollision(push, changeX, changeY)) {
+                    return true;
+                } else {
+                    if (push.getX() + changeX < 0 || push.getX() + push.getWidth() + changeX > WindowWidth || push.getY() + changeY < 0 || push.getY() + push.getHeight() + changeY > WindowHeight) {
+                    } else {
+                        push.setX(push.getX() + changeX);
+                        push.setY(push.getY() + changeY);
+
+                    }
+                }
+            }
+        }
+        return SolidCollision(component, changeX, changeY);
+    }
+
+    private boolean SolidCollision(GameComponent component, float changeX, float changeY) {
         for (Solid solid : solidList) {
-            if (solid.checkCollision(character, changeX, changeY)) {
+            if (solid.checkCollision(component, changeX, changeY)) {
                 return true;
             }
         }
@@ -58,5 +100,23 @@ public class CollisionChecker {
      */
     public void removeSolid(Solid solid) {
         solidList.remove(solid);
+    }
+
+    /**
+     * Add a new Pushable object to the list.
+     *
+     * @param pushable The oject that should be added.
+     */
+    public void addSolid(Pushable pushable) {
+        pushList.add(pushable);
+    }
+
+    /**
+     * Removes a Pushable oject from the list.
+     *
+     * @param pushable The object that should be removed.
+     */
+    public void removePushable(Pushable pushable) {
+        pushList.remove(pushable);
     }
 }

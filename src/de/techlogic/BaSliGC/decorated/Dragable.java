@@ -5,6 +5,7 @@
 package de.techlogic.BaSliGC.decorated;
 
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
+import org.newdawn.slick.Graphics;
 
 /**
  * Add the ability to drag an object to an AbstractGameComponent.
@@ -103,7 +104,7 @@ public class Dragable extends AbstractDecoratedGameComponent {
     }
 
     @Override
-    public void draw() {
-        component.draw();
+    public void draw(Graphics g) {
+        component.draw(g);
     }
 }

@@ -7,10 +7,12 @@ package de.techlogic.BaSliGC.util;
 import de.techlogic.BaSliGC.decorated.Clickable;
 import de.techlogic.BaSliGC.decorated.DecoratedGameComponent;
 import de.techlogic.BaSliGC.decorated.Dragable;
+import de.techlogic.BaSliGC.decorated.Pushable;
 import de.techlogic.BaSliGC.decorated.Solid;
 import de.techlogic.BaSliGC.util.gamecomponent.GameComponent;
 import de.techlogic.BaSliGC.util.gamecomponent.Character;
 import java.util.LinkedList;
+import org.newdawn.slick.Graphics;
 
 /**
  * Abstact implementation of the ComponentList.
@@ -19,14 +21,14 @@ import java.util.LinkedList;
  */
 public abstract class AbstractComponentList<MouseListener> implements ComponentList {
 
-    private MouseListener mouseListener;
-    private CollisionChecker collisionChecker;
-    private LinkedList<GameComponent> componentList;
-    private LinkedList<GameComponent> lastComponent;
-    private LinkedList<Dragable> dragableList;
-    private LinkedList<Clickable> clickableList;
-    private LinkedList<Character> characterList;
-    private Dragable active;
+    protected MouseListener mouseListener;
+    protected CollisionChecker collisionChecker;
+    protected LinkedList<GameComponent> componentList;
+    protected LinkedList<GameComponent> lastComponent;
+    protected LinkedList<Dragable> dragableList;
+    protected LinkedList<Clickable> clickableList;
+    protected LinkedList<Character> characterList;
+    protected Dragable active;
 
     public int getSize() {
         return componentList.size() + characterList.size();
@@ -117,6 +119,12 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         dragableList.add(drag);
     }
 
+    @Override
+    public void addPushable(Pushable push) {
+        addComponent(push);
+        collisionChecker.addSolid(push);
+    }
+
     public void removesForDecoration(GameComponent component) {
         componentList.remove(component);
 
@@ -131,20 +139,24 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
         clickableList.remove(click);
     }
 
-    private void searchforSolid(GameComponent component) {
+    private void searchforSolidAndPushable(GameComponent component) {
         if (component.getClass() != DecoratedGameComponent.class) {
         } else {
             if (component.getClass() == Solid.class) {
                 collisionChecker.removeSolid((Solid) component);
             } else {
-                searchforSolid(component.getComponent());
+                if (component.getClass() == Pushable.class) {
+                    collisionChecker.removePushable((Pushable) component);
+                } else {
+                    searchforSolidAndPushable(component.getComponent());
+                }
             }
         }
     }
 
     @Override
     public void removesComponent(GameComponent component) {
-        searchforSolid(component);
+        searchforSolidAndPushable(component);
         componentList.remove(component);
     }
 
@@ -154,13 +166,13 @@ public abstract class AbstractComponentList<MouseListener> implements ComponentL
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
 
         for (GameComponent component : componentList) {
-            component.draw();
+            component.draw(g);
         }
         for (Character c : characterList) {
-            c.draw();
+            c.draw(g);
         }
     }
 

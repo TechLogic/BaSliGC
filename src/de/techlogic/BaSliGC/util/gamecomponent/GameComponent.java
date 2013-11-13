@@ -4,6 +4,8 @@
  */
 package de.techlogic.BaSliGC.util.gamecomponent;
 
+import org.newdawn.slick.Graphics;
+
 /**
  * Contains methods to get and set postion, width and height of the object, also
  * a draw method.
@@ -78,5 +80,5 @@ public interface GameComponent {
     /**
      * Draw method of object.
      */
-    void draw();
+    void draw(Graphics g);
 }
